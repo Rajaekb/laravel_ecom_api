@@ -20,7 +20,15 @@ class Product extends Model
     }
     public function store()
     {
-        return $this->belongTo('App\Store');
+        return $this->belongsTo('App\Store');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    public function categorie()
+    {
+        return $this->belongsTo('App\Categorie');
     }
 }
 

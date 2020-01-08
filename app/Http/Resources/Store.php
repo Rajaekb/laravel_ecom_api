@@ -24,9 +24,10 @@ class Store extends JsonResource
         ];
 
     }
-   /* public function with($request){
+    /*public function with($request){
         return [
             'version' => '1.0.0',
             'author_email' => 'kobirajae@gmail.com'
-        ];*/
+        ];
+}*/
 }

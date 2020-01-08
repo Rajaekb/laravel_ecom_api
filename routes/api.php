@@ -17,24 +17,47 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Product Routes
-Route::post('Product/create','ProductController@store');
-Route::get('Products','ProductController@index');
-Route::get('Product/detail/{id}','ProductController@show');
-Route::put('Product/update/{id}','ProductController@update');
-Route::delete('Product/delete/{id}','ProductController@destroy');
-Route::get('/cart','CartController@index');
-Route::get('Checkout','CheckoutController@index');
+
 
 //Store Routes
+//show all stores
 Route::get('Stores','StoreController@index');
-Route::get('Store/{id}','StoreController@show');
-Route::post('Store/create','StoreController@store');
-Route::post('Store/update/{id}','StoreController@update');
-Route::get('Store/{id}/index','StoreController@index');
 
-Route::get('/shop','ShopController@index');
-Route::get('/shop/{product}','ShopController@show');
+//show single store by id
+Route::get('Store/{id}/show','StoreController@show');
+
+//Create new store
+Route::post('Store','StoreController@store');
+
+//Update store
+Route::put('Store','StoreController@store');
+
+//Delete store
+Route::delete('Store/{id}','StoreController@destroy');
+
+//Show all product for a specific store
+Route::get('Store/{id}','StoreController@index_product');
+
 
 //le lien ahref pour voir les detail du produit
 //"{{ route('shop.show',$product->name) }}"
+
+
+//Product Routes
+//Show all products
+Route::get('Products','ProductController@index');
+
+//Show single product by id
+Route::get('Product/{id}/show','ProductController@show');
+
+//Create new product
+Route::post('Product','ProductController@store');
+
+//Update product
+Route::put('Product','ProductController@store');
+
+//Delete Product
+Route::delete('Product/{id}','ProductController@destroy');
+
+//Route::get('/shop','ShopController@index');
+//Route::get('/shop/{product}','ShopController@show');

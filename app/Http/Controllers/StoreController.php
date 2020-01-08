@@ -51,13 +51,18 @@ class StoreController extends Controller
     
     {
         //
-        $store=new Store;
+        $store=$request->isMethod('put') ? Store::findOrFail
+        ($request->store_id): new Store;
+
+        $store->id=$request->store_id;
         $store->name=$request->name;
         $store->city=$request->city;
         $store->theme=$request->theme;
         $store->user_id=$request->user_id;
-        $store->save();
-        return ('saved');
+        if($store->save()){
+            return new StoreResource($store);
+        }
+      
     }
 
     /**
@@ -93,7 +98,7 @@ class StoreController extends Controller
      * @param  \App\store  $store
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+   /* public function update(Request $request, $id)
     {
         // Update store details
 
@@ -106,7 +111,7 @@ class StoreController extends Controller
      
     
         return("updated");
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -114,9 +119,12 @@ class StoreController extends Controller
      * @param  \App\store  $store
      * @return \Illuminate\Http\Response
      */
-    public function destroy(store $store)
-    {  //delete store is not recommanded but in case we need it 
-        $store=Store::find($id);
-        $store->delete();
+    public function destroy($id)
+    {  
+        $store=Store::findOrFail($id);
+        if($store->delete()){
+            return new StoreResource($store);
+        }
+        
     }
 }
