@@ -18,8 +18,8 @@ class ShopController extends Controller
     public function show($slug)
     {
         //@param string $slug
-        //$product=Product::where('slug',$slug)->firstOrFail();
-        $product=Product::find($name);
+        $product=Product::where('slug',$slug)->firstOrFail();
+        //$product=Product::find($name);
         //mightAlsoLike = Product::where('slug','!=', $slug)->inRandomOrder()->take(4)->get();
         return $product;
     }

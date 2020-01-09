@@ -60,4 +60,10 @@ Route::put('Product','ProductController@store');
 Route::delete('Product/{id}','ProductController@destroy');
 
 //Route::get('/shop','ShopController@index');
-//Route::get('/shop/{product}','ShopController@show');
+Route::get('Shop/{product}','ShopController@show');
+//show list products by categorie
+//Route::get('Shop/{categorie}','ShopController@show');
+Route::get('Cart','CartController@index')->name('cart.index');
+
+//Show all product for a categorie
+Route::get('Shop/categorie/{id}','ShopController@index')->name('cart.index');

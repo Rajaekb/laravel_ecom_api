@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Product extends Model
 {
@@ -18,6 +19,12 @@ class Product extends Model
     {
         return money_format('$%i',$this->price /100);
     }
+
+    /*public function scopeMightAlsoLike($query)
+    {
+        return $query->inRandomOrder->take(4);
+    }*/
+    
     public function store()
     {
         return $this->belongsTo('App\Store');

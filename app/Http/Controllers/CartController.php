@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Categorie;
+use App\Http\Resources\Product as ProductResource;
 use Illuminate\Http\Request;
+use App\Product;
 
-class CategorieController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,8 @@ class CategorieController extends Controller
     public function index()
     {
         //
-    }
-    public function show_products()
-    {
-        $products = Categorie::find($id)->products;
-        return $products;
+        $mightAlsoLike = Product::inRandomOrder()->take(4)->get();
+        return ProductResource::collection($mightAlsoLike);
     }
 
     /**
@@ -46,10 +43,10 @@ class CategorieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Categorie $categorie)
+    public function show($id)
     {
         //
     }
@@ -57,10 +54,10 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorie $categorie)
+    public function edit($id)
     {
         //
     }
@@ -69,10 +66,10 @@ class CategorieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categorie  $categorie
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -80,10 +77,10 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
         //
     }
