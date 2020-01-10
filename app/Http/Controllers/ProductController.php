@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         //
         //get Products list
-        $products=Product::paginate(8);
+        $products=Product::all();
         //Return Collection of products as a resource
         return ProductResource::collection($products);
     }
