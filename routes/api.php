@@ -51,7 +51,7 @@ Route::get('Products','ProductController@index');
 Route::get('Product/{id}/show','ProductController@show');
 
 //Create new product
-Route::post('Product','ProductController@store');
+Route::post('Product','ProductController@store_img');
 
 //Update product
 Route::put('Product','ProductController@store');
@@ -75,4 +75,7 @@ Route::get('Shop/categorie/{id}','ShopController@index')->name('cart.index');
     Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('user', 'UserController@getAuthenticatedUser');
         Route::get('closed', 'DataController@closed');
+
     });
+
+Route::post('image','ProductController@upload');
